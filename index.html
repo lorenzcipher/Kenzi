@@ -156,12 +156,14 @@
   .trust-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-500);}
 
   /* --- phone mockup --- */
-  .phone-wrap{position:relative;display:flex;justify-content:center;}
+  .phone-wrap{position:relative;display:flex;justify-content:center;perspective:1500px;}
   .phone{
     width:300px;border-radius:38px;background:var(--navy-950);
     border:1px solid var(--navy-700);
     box-shadow:0 40px 90px -30px rgba(0,0,0,0.7), 0 0 0 8px rgba(201,162,39,0.04);
     padding:14px;position:relative;z-index:2;
+    transform-style:preserve-3d;backface-visibility:hidden;
+    animation:phoneSpin360 1.9s cubic-bezier(.5,.05,.25,1) .55s both;
   }
   .phone-screen{background:var(--navy-900);border-radius:26px;padding:22px 18px 26px;min-height:520px;position:relative;overflow:hidden;}
   .phone-status{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.65rem;color:var(--slate-500);margin-bottom:18px;}
@@ -332,6 +334,14 @@
   }
   .btn-gold:hover::after{left:130%;}
 
+  @keyframes phoneSpin360{
+    0%{transform:rotateY(0deg) scale(0.92);opacity:0.85;}
+    45%{opacity:1;}
+    50%{transform:rotateY(180deg) scale(0.97);opacity:0.94;}
+    55%{opacity:1;}
+    100%{transform:rotateY(360deg) scale(1);opacity:1;}
+  }
+
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1;transform:none;transition:none;}
     .goal-bar i{transition:none;}
@@ -344,6 +354,7 @@
     .draw-path{stroke-dasharray:none;stroke-dashoffset:0;transition:none;}
     .feature-card:hover .feature-icon{animation:none;}
     .btn-gold::after{display:none;}
+    .phone{animation:none;transform:none;}
   }
 
   /* ===================== RESPONSIVE ===================== */
